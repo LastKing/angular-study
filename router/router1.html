@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../angular/angular.js"></script>
+    <script src="../angular/angular-ui-router.js"></script>
+    <script src="../angular/angular-state-helper.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+</body>
+</html>
+
+<script>
+    var myApp=angular.module('myApp',['ui.router','ui.router.stateHelper']);
+
+    myApp.controller('myCtrl',function($scope,$stateProvide){
+        console.log($stateProvide);
+
+    });
+
+
+</script>

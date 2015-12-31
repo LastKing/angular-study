@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="test">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular/angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+</head>
+<style>
+    .show-scope .doc-example-live.ng-scope,
+    .show-scope .doc-example-live .ng-scope  {
+    border: 1px solid red;
+    margin: 3px;
+    }
+</style>
+<body>
+    <div ng-controller="GreetCtrl">
+        Hello {{name}}!
+    </div>
+    <div ng-controller="ListCtrl">
+        <ol>
+            <li ng-repeat="name in names">{{name}}</li>
+        </ol>
+    </div>
+
+</body>
+</html>
+
+
+<script>
+    var test=angular.module('test',[]);
+
+    test.controller("GreetCtrl",function($scope){
+        $scope.name = 'World';
+    });
+
+    test.controller("ListCtrl",function($scope) {
+        $scope.names = ['Igor', 'Misko', 'Vojta'];
+    });
+
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyModule">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+</head>
+<body>
+    <div ng-controller="MyCtrl">
+        <drink flaover="{{ctrlFlavor}}"></drink>
+    </div>
+
+
+</body>
+</html>
+
+
+<script src="../angular/angular.js"></script>
+
+<script>
+    var myModule=angular.module('MyModule',[]);
+
+    myModule.controller("MyCtrl",['$scope',function($scope){
+        $scope.ctrlFlavor='百威';
+    }]);
+
+    myModule.directive("drink",function(){
+        return{
+            scope:{
+                flaover:'@'
+            },
+            restrict:'AE',
+            template:"<div>{{flaover}}</div>"
+//            ,
+//            link:function(scope,element,attrs){
+//                scope.flaover=attrs.flaover;
+//            }
+        }
+    })
+
+
+
+</script>
+
+
+
+

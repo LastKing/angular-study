@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyModule">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+    E:<hello>fdsfa</hello>
+    C:<div class="hello"><div>fdsfa</div></div>
+    A:<div hello></div>
+    E:<!-- directive:hello -->
+</body>
+</html>
+
+<script src="../angular/angular.js"></script>
+
+<script>
+    var myModule = angular.module('MyModule', []);
+
+    myModule.directive("hello", function () {
+        return {
+            restrict: 'EACM',
+            templateUrl: 'directive1Tmep.html',
+            transclude : true
+        }
+    })
+
+</script>

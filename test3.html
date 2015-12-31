@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="greetMod">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular/angular.js"></script>
+</head>
+<body>
+
+
+<script>
+    angular.module('greetMod', [])
+            .factory('alert', function ($window) {
+                return function (text) {
+                    $window.alert(text);
+                }
+            }).value('salutation', 'Hello')
+            .factory('greet', function (alert, salutation) {
+                return function (name) {
+                    alert(salutation + ' ' + name + '!');
+                }
+            });
+
+//    describe('myApp', function() {
+//        // 加载相关的应用模块，然后加载指定的测试模块，它将把$window改写为一个mock版
+//        // 所以，调用window.alert()将不会弹出一个提示框而阻塞测试的运行。这就是一个在测试容器中改写配置信息的例子。
+//        beforeEach(module('greetMod', function($provide) {
+//            $provide.value('$window', {
+//                alert: jasmine.createSpy('alert')
+//            });
+//        }));
+//
+//        // inject()函数将创建一个注入器，并且把greet服务和$window服务注入到测试容器中。
+//        // 测试代码不需要关心如何获取应用，只管测试它就行了。
+//        it('should alert on $window', inject(function(greet, $window) {
+//            greet('World');
+//            expect($window.alert).toHaveBeenCalledWith('Hello World!');
+//        }));
+//
+//        // 这是让测试容器改写配置的另一种方案：使用内嵌模块和依赖注入
+//        it('should alert using the alert service', function() {
+//            var alertSpy = jasmine.createSpy('alert');
+//            module(function($provide) {
+//                $provide.value('alert', alertSpy);
+//            });
+//            inject(function(greet) {
+//                greet('World');
+//                expect(alertSpy).toHaveBeenCalledWith('Hello World!');
+//            });
+//        });
+//    });
+</script>
+
+</body>
+</html>
+

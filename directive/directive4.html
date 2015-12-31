@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyModule">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../angular/angular.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+</head>
+<body>
+
+        <hello></hello>
+
+        <hello></hello>
+
+        <hello></hello>
+
+        <hello></hello>
+
+</body>
+</html>
+
+<script>
+    var myModule = angular.module('MyModule', []);
+
+    myModule.directive('hello', function () {
+        return {
+            scope:{},
+            restrict: 'AE',
+            template: '<div><input type="text" ng-model="userName"/>{{userName}}</div>',
+            replace: true
+        }
+    });
+
+</script>

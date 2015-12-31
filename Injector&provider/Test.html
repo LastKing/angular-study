@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+
+    function add() {
+        function getService() {
+            console.log('service');
+        }
+
+        function getConsole() {
+            console.log('console');
+        }
+
+        return {
+            getService: getService
+        }
+    }
+
+    add().getService();
+
+</script>
