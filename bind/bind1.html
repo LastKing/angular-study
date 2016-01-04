@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+
+<span ng-bind="counter"></span>
+<button ng-click="counter=counter+1">increase</button>
+
+<script>
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope) {
+        $scope.counter = 1;
+    });
+
+</script>
+
+</body>
+</html>

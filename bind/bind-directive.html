@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+
+<button myclick>increase</button>
+<span ng-bind="counter"></span>
+
+<script>
+    var root = angular.module("root", []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope) {
+        $scope.counter = 0;
+    });
+
+    root.directive("myclick", function () {
+        return function (scope, element, attr) {
+            element.on('click', function () {
+                scope.counter++;
+                scope.$digest();
+            })
+        };
+    });
+
+</script>
+
+</body>
+</html>

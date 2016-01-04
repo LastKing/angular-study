@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body ng-controller="CounterCtrl">
+<a href="https://github.com/xufei/blog/issues/10">Angular沉思录（一）数据绑定</a>
+
+<span ng-bind="counter"></span>
+<button myclick>increase</button>
+
+<script>
+    var app = angular.module("root", []);
+
+    app.directive("myclick", function () {
+        return function (scope, element, attr) {
+            element.on("click", function () {
+                scope.counter++;
+                scope.$apply(function () {
+                    scope.counter++;
+                });
+            });
+        };
+    });
+
+    app.controller("CounterCtrl", function ($scope) {
+        $scope.counter = 0;
+    });
+</script>
+
+</body>
+</html>

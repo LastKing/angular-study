@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+<a href="https://github.com/xufei/blog/issues/10">Angular沉思录（一）数据绑定</a>
+<p>
+    当调用$digest的时候，只触发当前作用域和它的子作用域上的监控，但是当调用$apply的时候，会触发作用域树上的所有监控。
+</p>
+
+<div ng-app="test">
+    <div ng-controller="OuterCtrl">
+        <div ng-controller="InnerCtrl">
+            <button increaseb>increase b</button>
+            <span ng-bind="b"></span>
+        </div>
+        <button increasea>increase a</button>
+        <span ng-bind="a"></span>
+    </div>
+</div>
+
+<script>
+    var app = angular.module("test", []);
+
+    app.directive("increasea", function () {
+        return function (scope, element, attr) {
+            element.on("click", function () {
+                scope.a++;
+                scope.$digest();
+            });
+        };
+    });
+
+    app.directive("increaseb", function () {
+        return function (scope, element, attr) {
+            element.on("click", function () {
+                scope.b++;
+                scope.$digest();    //这个换成$apply即可
+            });
+        };
+    });
+
+    app.controller("OuterCtrl", ["$scope", function ($scope) {
+        $scope.a = 1;
+
+        $scope.$watch("a", function (newVal) {
+            console.log("a:" + newVal);
+        });
+
+        $scope.$on("test", function (evt) {
+            $scope.a++;
+        });
+    }]);
+
+    app.controller("InnerCtrl", ["$scope", function ($scope) {
+        $scope.b = 2;
+
+        $scope.$watch("b", function (newVal) {
+            console.log("b:" + newVal);
+            $scope.$emit("test", newVal);
+        });
+    }]);
+
+</script>
+
+</body>
+</html>
