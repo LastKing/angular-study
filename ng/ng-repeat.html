@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body ng-controller="rootCtrl">
+
+<a href="https://github.com/xufei/blog/issues/14">参考</a>
+
+<p>有唯一索引的数组</p>
+<ul>
+    <li ng-repeat="item in arr1">{{item}}</li>
+</ul>
+
+<p>没有唯一索引的数组</p>
+<ul>
+    <li ng-repeat="item in arr2 track by $index">{{item}}</li>
+</ul>
+
+<p>多维数组</p>
+<ul>
+    <li ng-repeat="childArr in arr3 track by $index">
+        {{$index}}
+        <ul>
+            <li ng-repeat="item in childArr track by $index">{{item}}</li>
+        </ul>
+    </li>
+</ul>
+
+<p>对象结构数组</p>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="child in arr4">
+        <td>{{child.name}}</td>
+        <td>{{child.age}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<p>遍历对象属性</p>
+<ul>
+    <li ng-repeat="(key,value) in obj">{{key}}:{{value}}</li>
+</ul>
+
+<script>
+    var root = angular.module('root', []);
+
+    var rootCtrl = root.controller('rootCtrl', function ($scope) {
+        //1.有唯一索引的数组
+        $scope.arr1 = [1, 2, 3];
+
+        //2.没有唯一索引的数组
+        $scope.arr2 = [1, 1, 3];
+
+        //3.多维数组
+        $scope.arr3 = [
+            [11, 12, 13],
+            [21, 22, 23],
+            [31, 32, 33]
+        ];
+        //4.对象结构数组
+        $scope.arr4 = [{
+            name: "Tom",
+            age: 5
+        }, {
+            name: "Jerry",
+            age: 2
+        }];
+
+        //5.遍历对象属性
+        $scope.obj = {
+            a: 1,
+            b: 2,
+            c: 3
+        };
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+
+
+<script>
+    var module = angular.module('app', []);
+
+    var hasNgInjector=angular.injector(['app','ng']);
+    console.log("has $rootScope=" + hasNgInjector.has("$rootScope"));//true
+
+</script>
+
+</body>
+</html>

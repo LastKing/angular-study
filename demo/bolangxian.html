@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="RootCtrl">
+    <style>
+        .wave-item {
+            float: left;
+            width: 1px;
+            background-color: #ffab51;
+        }
+    </style>
+    <div>
+        <div ng-repeat="item in staticItems track by $index" class="wave-item" ng-style="{'height': item+'px'}"></div>
+    </div>
+    <div style="clear: left">
+        <div ng-repeat="item in dynamicItems track by $index" class="wave-item" ng-style="{'height': item+'px'}"></div>
+    </div>
+</div>
+
+<script>
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope, $timeout) {
+        $scope.dynamicItems = [];
+
+        var counter = 0;
+
+        function addItem() {
+            var newItem = Math.ceil(100 * (1 + Math.sin((counter++) * Math.PI / 180)));
+
+            if ($scope.dynamicItems.length > 500) {
+                $scope.dynamicItems.splice(0, 1);
+            }
+
+            $scope.dynamicItems.push(newItem);
+
+            $timeout(function () {
+                addItem();
+            }, 10);
+        }
+
+        addItem();
+    });
+</script>
+
+</body>
+</html>

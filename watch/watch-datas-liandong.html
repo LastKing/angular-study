@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="RootCtrl">
+    <ul class="list-group">
+        <li ng-repeat="province in provinceArr"
+            ng-class="{true:'list-group-item active', false: 'list-group-item'}[province==selectedProvince]"
+            ng-click="selectProvince(province)">
+            {{province}}
+        </li>
+    </ul>
+    <ul class="list-group">
+        <li ng-repeat="city in cityArr"
+            ng-class="{true:'list-group-item active', false: 'list-group-item'}[city==selectedCity]"
+            ng-click="selectCity(city)">
+            {{city}}
+        </li>
+    </ul>
+
+    <select class="form-control col-md-6" ng-model="selectedProvince"
+            ng-options="province for province in provinceArr"></select>
+    <select class="form-control col-md-6" ng-model="selectedCity" ng-options="city for city in cityArr"></select>
+</div>
+
+
+<script>
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope) {
+        $scope.provinceArr = ["江苏", "云南"];
+        $scope.cityArr = [];
+
+        $scope.$watch("selectedProvince", function (province) {
+            switch (province) {
+                case "江苏":
+                {
+                    $scope.cityArr = ["南京", "苏州"];
+                    break;
+                }
+                case "云南":
+                {
+                    $scope.cityArr = ["昆明", "丽江"];
+                    break;
+                }
+            }
+        });
+
+        $scope.selectProvince = function (province) {
+            $scope.selectedProvince = province;
+        };
+
+        $scope.selectCity = function (city) {
+            $scope.selectedCity = city;
+        };
+
+    });
+
+</script>
+
+</body>
+</html>

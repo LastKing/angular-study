@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+<p><a href="https://github.com/xufei/blog/issues/14">参考</a></p>
+
+<button ng-click="changeArr()">changArr</button>
+
+<script>
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope) {
+        //2.监控整个数组
+        $scope.arr = [0];
+
+        $scope.$watch("arr", function (newValue) {
+            console.log("change" + newValue);
+        });
+
+        $scope.changeArr = function () {
+            $scope.arr = [7, 8];
+        };
+
+        //3.细化监控条件
+        $scope.$watch("arr", function(newValue) {
+            alert("deep:" + newValue.join(","));
+        }, true);
+
+        $scope.addItem = function() {
+            $scope.arr.push($scope.arr.length);
+        };
+
+    });
+</script>
+
+
+</body>
+</html>

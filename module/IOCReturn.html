@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+<a href="http://blog.csdn.net/aitangyong/article/details/40267583">http://blog.csdn.net/aitangyong/article/details/40267583</a>
+
+<script>
+    // 传递参数不止一个,代表新建模块;空数组代表该模块不依赖其他模块
+    var createModule = angular.module("myModule", []);
+
+    // 只有一个参数(模块名),代表获取模块
+    // 如果模块不存在,angular框架会抛异常
+    var getModule = angular.module("myModule");
+
+    // true,都是同一个模块
+    console.log(createModule === getModule);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+<p>在非controller中操作了dom ,需要手动触发脏数据检测</p>
+
+<div id="root_div" ng-controller="myController">
+    <input type="button" value="a" id="a" ng-disabled="buttonAdisable"/>
+    <input type="button" value="b" id="b" ng-disabled="buttonBdisable"/>
+    <br/>
+    <input type="button" value="enable-a" ng-click="enableA();"/>
+</div>
+<input type="button" value="enable-b" onclick="enableB();"/>
+
+<script>
+    var app = angular.module('app', []);
+
+    app.controller("myController", function ($scope) {
+        $scope.buttonAdisable = true;
+        $scope.buttonBdisable = true;
+
+        $scope.enableA = function () {
+            $scope.buttonAdisable = false;
+        }
+    });
+
+    //启动模块
+    angular.element(document).ready(function () {
+        angular.bootstrap(document.getElementById('root_div'), ["app"]);
+    });
+
+    function enableB() {
+        var scope = angular.element(document.getElementById('b')).scope();
+        scope.buttonBdisable = false;
+        scope.$digest();
+    }
+
+</script>
+
+</body>
+</html>

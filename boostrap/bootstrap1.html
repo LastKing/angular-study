@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+
+<div id="div1" ng-controller="controller1">div1:{{name}}</div>
+<div id="div2" ng-controller="controller2">div2:{{name}}</div>
+
+<script>
+
+    var module1 = angular.module('module1', []);
+    module1.controller('controller1', function ($scope) {
+        $scope.name = "aty";
+    });
+
+    var module2 = angular.module('module2', []);
+    module2.controller('controller2', function ($scope) {
+        $scope.name = "aty";
+    });
+
+    angular.element(document).ready(function () {
+        angular.bootstrap(document.getElementById('div1'),["module1"]);
+        angular.bootstrap(document.getElementById('div2'),["module2"]);
+    });
+
+</script>
+
+</body>
+</html>

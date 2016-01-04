@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="root">
 <head>
     <meta charset="UTF-8">
     <title></title>
     <script src="../angular/angular.js"></script>
 </head>
-<body ng-controller="MyController">
-<input type="text" ng-model="expr"/>
+<body ng-controller="RootCtrl">
+<p><a href="https://github.com/xufei/blog/issues/14">参考</a></p>
 
-<h2>{{parseValue}}</h2>
-</body>
-</html>
-
+<button ng-click="changeA()">a++</button>
 
 <script>
-    angular.module("myApp", []).controller("MyController", function ($scope, $parse) {
-        $scope.$watch('expr', function (newVal, oldVal, scope) {
-            if (newVal !== oldVal) {
-                //用该表达式设置parseFun
-                var parseFun = $parse(newVal);
-                //获取经过解析后表达式的值
-                $scope.parseValue = parseFun(scope);
-            }
-        })
-    })
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope) {
+        //1.最简单的监控
+        $scope.a = 1;
+
+        $scope.$watch("a", function (newValue, oldValue) {
+            console.log(oldValue + " -> " + newValue);
+        });
+
+        $scope.changeA = function () {
+            $scope.a++;
+        };
+
+
+
+    });
 </script>
+
+
+</body>
+</html>

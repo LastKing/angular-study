@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+
+<script>
+
+    var myModule = angular.module('myModule', []);
+    myModule.service('myService', function () {
+        this.my = 0;
+    });
+
+    // 创建herModule模块、注册服务
+    var herModule = angular.module('herModule', []);
+    herModule.service('herService', function () {
+        this.her = 1;
+    });
+
+    var injector = angular.injector(["myModule", "herModule"]);
+    console.log(injector.get('myService').my);
+    console.log(injector.get("herService").her);
+
+</script>
+
+</body>
+</html>
