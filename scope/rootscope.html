@@ -11,9 +11,18 @@
 <script>
     var module = angular.module('app', []);
 
+    // true说明$rootScope确实以服务的形式包含在模块的injector中
     var hasNgInjector=angular.injector(['app','ng']);
     console.log("has $rootScope=" + hasNgInjector.has("$rootScope"));//true
 
+    // 获取模块相应的injector对象,不获取ng模块中的服务
+    // 不依赖于ng模块,无法获取$rootScope服务
+    var noNgInjector = angular.injector(['app']);
+    console.log("no $rootScope=" + noNgInjector.has("$rootScope"));//false
+
+    // 获取angular核心的ng模块
+    var ngInjector = angular.injector(['ng']);
+    console.log("ng $rootScope=" + ngInjector.has("$rootScope"));//true
 </script>
 
 </body>
