@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+
+{{'testetsetse'|toolong}}
+
+<script>
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope) {
+
+    });
+
+    root.filter('toolong', function () {
+        return function (input) {
+            return input.substring(0, 3) + "....";
+        };
+    })
+
+</script>
+
+
+</body>
+</html>

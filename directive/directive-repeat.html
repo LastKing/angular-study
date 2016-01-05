@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+    <script src="../js/jquery-2.0.3.min.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+
+<ul repeater="20">
+    <li>哈哈</li>
+</ul>
+
+
+<script>
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', [demo]);
+
+    function demo($scope) {
+
+    }
+
+    root.directive('repeater', function ($document) {
+        return {
+            restrict: 'A',
+            compile: function (element, attrs) {
+                var template = $(element).children().clone();
+                for (var i = 0; i < attrs.repeater - 1; i++) {
+                    $(element).append(template.clone());
+                }
+            }
+        }
+    })
+
+</script>
+
+</body>
+</html>
