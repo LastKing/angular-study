@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+<p>隔离controller中的scope中的值</p>
+<p>& 提供一种方式执行一个表达式在父 scope 的上下文中。如果没有指定 attr 名称，则属性名称为相同的本地名称。</p>
+
+<div>父scope：
+    <div>Say：{{value}}</div>
+</div>
+<div>隔离scope：
+    <div share-directive action="click()"></div>
+</div>
+
+<script>
+    var root = angular.module('root', []);
+
+    root.controller('RootCtrl', function ($scope) {
+        $scope.value = "hello world";
+        $scope.click = function () {
+            $scope.value = Math.random();
+        };
+    });
+
+    root.directive('shareDirective', function () {
+        return {
+            scope: {
+                action: "&"
+            },
+            template: '<input type="button" value="在directive中执行父scope定义的方法" ng-click="action()"/>'
+        }
+    });
+</script>
+
+</body>
+</html>

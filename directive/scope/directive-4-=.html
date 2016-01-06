@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+<p>隔离controller中的scope中的值</p>
+<p>= 通过 directive 的 attr 属性的值在局部 scope 的属性和父 scope 属性名之间建立双向绑定。</p>
+
+<div>
+    父scope：<br>
+    Say：{{user.name}}<br>
+    改变父scope的name：<input type="text" value="" ng-model="user.name"/>
+</div>
+
+<div>
+    隔离scope：
+    <div share-directive user="user"></div>
+</div>
+
+<div>
+    隔离scope（使用 双{}）：
+    <div share-directive user="{{user}}"></div>
+</div>
+
+<script>
+    var root = angular.module('root', []);
+
+    root.controller('RootCtrl', function ($scope) {
+        $scope.user = {
+            name: 'toonew',
+            id: 1
+        }
+    });
+
+    root.directive('shareDirective', function () {
+        return {
+            scope: {
+                user: "="
+            },
+            template: 'Say：{{user.name}} <br>' +
+            '改变隔离scope的name：<input type="buttom" value="" ng-model="user.name"/>'
+        }
+    });
+</script>
+
+</body>
+</html>

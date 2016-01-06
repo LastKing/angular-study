@@ -7,24 +7,22 @@
     <link rel="stylesheet" href="../css/bootstrap.css"/>
 </head>
 <body>
+<p>隔离作用域</p>
 
-        <hello></hello>
+<hello></hello>
 
-        <hello></hello>
+<hello></hello>
 
-        <hello></hello>
+<hello></hello>
 
-        <hello></hello>
-
-</body>
-</html>
+<hello></hello>
 
 <script>
     var myModule = angular.module('MyModule', []);
 
     myModule.directive('hello', function () {
         return {
-            scope:{},
+            scope: {},
             restrict: 'AE',
             template: '<div><input type="text" ng-model="userName"/>{{userName}}</div>',
             replace: true
@@ -32,3 +30,7 @@
     });
 
 </script>
+
+</body>
+</html>
+

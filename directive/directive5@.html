@@ -4,44 +4,38 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../angular/angular.js"></script>
 </head>
 <body>
-    <div ng-controller="MyCtrl">
-        <drink flaover="{{ctrlFlavor}}"></drink>
+
+<div ng-controller="MyCtrl">
+
+    <div>
+        外部<input type="text" ng-model="ctrlFlavor">
     </div>
 
+    <div>
+        内部<drink flaover="{{ctrlFlavor}}"></drink>
+    </div>
 
-</body>
-</html>
-
-
-<script src="../angular/angular.js"></script>
+</div>
 
 <script>
-    var myModule=angular.module('MyModule',[]);
+    var myModule = angular.module('MyModule', []);
 
-    myModule.controller("MyCtrl",['$scope',function($scope){
-        $scope.ctrlFlavor='百威';
+    myModule.controller("MyCtrl", ['$scope', function ($scope) {
+        $scope.ctrlFlavor = '百威';
     }]);
 
-    myModule.directive("drink",function(){
-        return{
-            scope:{
-                flaover:'@'
+    myModule.directive("drink", function () {
+        return {
+            scope: {
+                flaover: '@'
             },
-            restrict:'AE',
-            template:"<div>{{flaover}}</div>"
-//            ,
-//            link:function(scope,element,attrs){
-//                scope.flaover=attrs.flaover;
-//            }
+            restrict: 'AE',
+            template: "<input type='text' ng-model='flaover' >"
         }
     })
-
-
-
 </script>
-
-
-
-
+</body>
+</html>

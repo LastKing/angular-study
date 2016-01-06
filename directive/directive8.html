@@ -2,7 +2,7 @@
 <html lang="en" ng-app="ExpanderModule">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
     <script src="../angular/angular.js"></script>
     <style>
         .expander {
@@ -10,25 +10,23 @@
             width: 250px;
         }
 
-        .expander>.title {
+        .expander > .title {
             background-color: black;
             color: white;
             padding: .1em .3em;
             cursor: pointer;
         }
 
-        .expander>.body {
+        .expander > .body {
             padding: .1em .3em;
         }
     </style>
 </head>
 <body ng-controller="SomeController">
-    <expander class="expander" expander-title="title">
-        {{text}}
-    </expander>
 
-</body>
-</html>
+<expander class="expander" expander-title="title">
+    {{text}}
+</expander>
 
 <script>
     var expanderModule = angular.module('ExpanderModule', []);
@@ -41,23 +39,26 @@
             scope: {
                 title: '=expanderTitle'
             },
-            template:'<div>' +
-                    '<div class="title" ng-click="toggle()">{{title}}</div>' +
-                    '<div class="body" ng-show="showMe" ng-transclude></div>  ' +
-                    '</div>   ',
-            link: function (scope,element,attrs){
-                scope.showMe=false;
-                scope.toggle = function(){
-                    scope.showMe=!scope.showMe;
+            template: '<div>' +
+            '<div class="title" ng-click="toggle()">{{title}}</div>' +
+            '<div class="body" ng-show="showMe" ng-transclude></div>' +
+            '</div>',
+            link: function (scope, element, attrs) {
+                scope.showMe = false;
+                scope.toggle = function () {
+                    scope.showMe = !scope.showMe;
                 }
             }
         }
     });
 
-    expanderModule.controller('SomeController',function($scope){
-        $scope.title="点击展开";
-        $scope.text='这里是内部的内容';
+    expanderModule.controller('SomeController', function ($scope) {
+        $scope.title = "点击展开";
+        $scope.text = '这里是内部的内容';
     });
 
 
 </script>
+</body>
+</html>
+

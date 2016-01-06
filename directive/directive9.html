@@ -2,7 +2,7 @@
 <html lang="en" ng-app="ExpanderModule">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
     <script src="../angular/angular.js"></script>
     <style>
         .expander {
@@ -29,9 +29,6 @@
         {{expander.text}}
     </expander>
 </accordion>
-
-</body>
-</html>
 
 <script>
     var expanderModule = angular.module('ExpanderModule', []);
@@ -69,8 +66,8 @@
             },
             template: '<div>' +
             '<div class="title" ng-click="toggle()">{{title}}</div>' +
-            '<div class="body" ng-show="showMe" ng-transclude></div>  ' +
-            '</div>   ',
+            '<div class="body" ng-show="showMe" ng-transclude></div>' +
+            '</div>',
             link: function (scope, element, attrs, accordionController) {
                 scope.showMe = false;
                 accordionController.addExpander(scope);
@@ -94,6 +91,7 @@
             text: 'test'
         }];
     });
-
-
 </script>
+
+</body>
+</html>

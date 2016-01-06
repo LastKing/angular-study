@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+<p>隔离controller中的scope中的值</p>
+<p> @ 绑定一个局部 scope 属性到当前 dom 节点的属性值。结果总是一个字符串，因为 dom 属性是字符串。</p>
+
+<div>
+    父scope：<br>
+    Say：{{name}}<br>
+    改变父scope的name：<input type="text" value="" ng-model="name"/>
+</div>
+<div>
+    隔离scope：<br>
+    <div share-directive name="{{name}}"></div>
+</div>
+<div>
+    隔离scope（指令属性中不使用 双{}）：
+    <div share-directive name="name"></div>
+</div>
+
+<script>
+    var root = angular.module('root', []);
+
+    root.controller('RootCtrl', function ($scope) {
+        $scope.name = "hello world";
+    });
+
+    root.directive('shareDirective', function () {
+        return {
+            scope: {
+                name: "@"
+            },
+            template: 'Say：{{name}} <br>' +
+            '改变隔离scope的name：<input type="buttom" value="" ng-model="name" class="ng-pristine ng-valid">'
+        }
+    });
+</script>
+
+</body>
+</html>

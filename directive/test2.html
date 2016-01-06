@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <title></title>
     <script src="../angular/angular.js"></script>
 </head>
-<body ng-app="app">
-    <body ng-controller="MainCtrl">
-        <input type="text" ng-model="color" placeholder="Enter a color"/>
-        <hello-world color="color"/>
-    </body>
-</body>
-</html>
+<body ng-controller="MainCtrl">
+
+<input type="text" ng-model="color" placeholder="Enter a color"/>
+<hello-world color="color"/>
 
 
 <script>
-    app=angular.module('app',[]);
+    app = angular.module('app', []);
 
-    app.controller('MainCtrl',function($scope){
+    app.controller('MainCtrl', function ($scope) {
 
     });
 
-    app.directive('helloWorld', function() {
+    app.directive('helloWorld', function () {
         return {
             scope: {
                 color: '='
@@ -29,18 +26,22 @@
             restrict: 'AE',
             replace: true,
             template: '<p style="background-color:{{color}}">Hello World</p>',
-            link: function(scope, elem, attrs) {
-                elem.bind('click', function() {
-                    elem.css('background-color','white');
-                    scope.$apply(function() {
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    elem.css('background-color', 'white');
+                    scope.$apply(function () {
                         scope.color = "white";
                     });
                 });
-                elem.bind('mouseover', function() {
+                elem.bind('mouseover', function () {
                     elem.css('cursor', 'pointer');
                 });
             }
         };
     });
-
 </script>
+
+</body>
+</html>
+
+

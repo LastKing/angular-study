@@ -6,26 +6,28 @@
     <script src="../angular/angular.js"></script>
 </head>
 <body>
-    <hello></hello>
-</body>
-</html>
+<p>指令只需要挂在模块上就行，不需要依赖controller而存在</p>
+<hello></hello>
+
 
 <script>
+    var myModule = angular.module('MyModule', []);
 
-    var myModule=angular.module('MyModule',[]);
-
-    myModule.directive('hello',function(){
+    myModule.directive('hello', function () {
         return {
             restrict: 'E',
-            replace:true,
-            template:'<div> hello world!!!</div>',
-            link:function(scope,elment,attrs,contoller){
+            replace: true,
+            template: '<div> hello world!!!</div>',
+            link: function (scope, elment, attrs, contoller) {
 //                console.log('<hello> ..... link ....');
-                elment.on('mouseenter',function(){
+                elment.on('mouseenter', function () {
                     console.log('鼠标进入....');
                 });
             }
         }
     });
-
 </script>
+
+</body>
+</html>
+

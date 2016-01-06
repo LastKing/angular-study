@@ -6,60 +6,26 @@
     <script src="../angular/angular.js"></script>
 </head>
 <body ng-controller="myCtrl4">
+<p>指令中 scope 隔离作用域 </p>
+<repeater info="naomi"></repeater>
 
-    <label>
-        <input type="text" ng-model="test"/>
-    </label>
-
-    <p>{{test | currency}}</p>
-
-    <div>
-        <repeater info="naomi"></repeater>
-    </div>
-
-    Your name:
-    <input type="text" ng-model="username">
-    <button ng-click='sayHello()'>greet</button>
-    <hr>
-    {{greeting}}
-</body>
-</html>
 
 <script>
+    var myModule = angular.module('MyModule4', []);
 
-    var myModule=angular.module('MyModule4',[]);
-
-    myModule.controller('myCtrl4',function($scope){
-        $scope.name='test';
-        $scope.address='test';
-
-        $scope.username = 'World';
-        $scope.sayHello = function() {
-            $scope.greeting = 'Hello ' + $scope.username + '!';
-        };
+    myModule.controller('myCtrl4', function ($scope) {
+        $scope.name = 'test';
+        $scope.address = 'test';
     });
 
-    myModule.directive('repeater',function(){
+    myModule.directive('repeater', function () {
         return {
-            restrict:'AE',
-            scope:{},
-            template:'Name: {{name}}   Address: '
+            restrict: 'AE',
+            scope: {},
+            template: 'Name: {{name}}   Address:{{address}} '
         }
     })
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>

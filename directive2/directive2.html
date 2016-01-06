@@ -6,36 +6,35 @@
     <script src="../angular/angular.js"></script>
 </head>
 <body>
-    <div alotofhello="5">
-        <p>大漠穷求 </p>
-    </div>
-</body>
-</html>
+
+<div alotofhello="5">
+    <p>大漠穷求 </p>
+</div>
 
 <script>
+    var myModule = angular.module('MyModule', []);
 
-    var myModule=angular.module('MyModule',[]);
-
-    myModule.directive('alotofhello',function(){
+    myModule.directive('alotofhello', function () {
         return {
             restrict: 'A',
-            compile:function(element,attrs,transclude){
+            compile: function (element, attrs, transclude) {
                 //这里开始对标签元素自身进行一些变换
-                console.log("指令编译...")
-                var tpl=element.children().clone();
+                console.log("指令编译...");
+                var tpl = element.children().clone();
                 console.log(tpl);
-                for( var i=0 ;i <attrs.alotofhello-1;i++){
+                for (var i = 0; i < attrs.alotofhello - 1; i++) {
                     element.append(tpl.clone());
                 }
-                return function(scope,el,attrs,controller){
+                return function (scope, el, attrs, controller) {
                     console.log('指令链接 ....');
                 }
             },
-            link:function(){
+            link: function () {
                 console.log("我自己的link函数");
             }
         }
     });
-
-
 </script>
+
+</body>
+</html>

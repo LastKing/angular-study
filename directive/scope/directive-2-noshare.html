@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../angular/angular.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+<p>隔离controller中的scope中的值</p>
+
+<div share-directive=""></div>
+
+<script>
+    var root = angular.module('root', []);
+
+    root.controller('RootCtrl', function ($scope) {
+        $scope.name = "hello world";
+    });
+
+    root.directive('shareDirective', function () {
+        return {
+            scope: {},
+            template: 'Save {{name}}'
+        }
+    });
+</script>
+
+</body>
+</html>

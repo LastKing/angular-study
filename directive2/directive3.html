@@ -7,52 +7,35 @@
 </head>
 <body>
 
-    <div ng-repeat="i in [1,2]">
-        <div repeater="2">
-            <p>大漠穷求 </p>
-        </div>
+<div ng-repeat="i in [1,2]">
+    <div repeater="2">
+        <p>大漠穷求 </p>
     </div>
-
-</body>
-</html>
+</div>
 
 <script>
+    var myModule = angular.module('MyModule', []);
 
-    var myModule=angular.module('MyModule',[]);
-
-    myModule.directive('repeater',function(){
+    myModule.directive('repeater', function () {
         return {
-            restrict:'A',
-            compile:function(element,attrs,transclude){
+            restrict: 'A',
+            compile: function (element, attrs, transclude) {
                 console.log("repeat....compile...");
 
-                var tpl=element.children().clone();
+                var tpl = element.children().clone();
 
-                for(var i=0;i<attrs.repeater-1;i++){
+                for (var i = 0; i < attrs.repeater - 1; i++) {
                     element.append(tpl.clone());
                 }
 
                 //返回link函数
-                return function (scope,el,attrs,controller){
+                return function (scope, el, attrs, controller) {
                     console.log("repeat....link....");
                 }
             }
         }
-    })
-
+    });
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>

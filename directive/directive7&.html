@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../angular/angular.js"></script>
 </head>
+
 <body ng-controller="MyCtrl">
 
 <greeting greet="sayHello(name)"></greeting>
 <greeting greet="sayHello(name)"></greeting>
 <greeting greet="sayHello(name)"></greeting>
-
-</body>
-</html>
-
-<script src="../angular/angular.js"></script>
 
 <script>
     var myModule = angular.module('MyModule', []);
@@ -27,14 +24,15 @@
 
     myModule.directive("greeting", function () {
         return {
-            restrict: 'AE',
+            restrict: 'E',
             scope: {
                 greet: '&'
             },
-            template: ' <br/><input type="text"  ng-model="userName"/><br/>' +
+            template: '<br/><input type="text"  ng-model="userName"/><br/>' +
             '<button class="btn btn-default" ng-click="greet({name:userName})"/>Gree'
         }
-    })
-
-
+    });
 </script>
+
+</body>
+</html>

@@ -2,48 +2,38 @@
 <html lang="en" ng-app="MyModule">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../angular/angular.js"></script>
 </head>
 <body>
-    <div ng-controller="MyCtrl">
-        Ctrl:
-        <br/>
-        <input type="text" ng-model="ctrlFlavor" title="嘿嘿"/>
-        <br/>
-        Directive:
-        <br/>
-        <drink flavor="ctrlFlavor"></drink>
-
-    </div>
-</body>
-</html>
-
-
-<script src="../angular/angular.js"></script>
+<div ng-controller="MyCtrl">
+    Ctrl:
+    <br/>
+    <input type="text" ng-model="ctrlFlavor" title="嘿嘿"/>
+    <br/>
+    Directive:
+    <br/>
+    <drink flavor="ctrlFlavor"></drink>
+</div>
 
 <script>
-    var myModule=angular.module('MyModule',[]);
+    var myModule = angular.module('MyModule', []);
 
-    myModule.controller("MyCtrl",function($scope){
-        $scope.ctrlFlavor='百威';
+    myModule.controller("MyCtrl", function ($scope) {
+        $scope.ctrlFlavor = '百威';
     });
 
-    myModule.directive("drink",function() {
+    myModule.directive("drink", function () {
         return {
-            scope:{
-                flavor:'='
+            scope: {
+                flavor: '='
             },
-            restrict:'AE',
-            template:'<input type="text" ng-model="flavor"/>'
+            restrict: 'AE',
+            template: '<input type="text" ng-model="flavor"/>'
         }
     });
-
 </script>
 
-
-
-
-
-
-
+</body>
+</html>
