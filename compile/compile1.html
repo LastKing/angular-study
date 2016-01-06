@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+    <script src="../js/jquery-2.0.3.min.js"></script>
+</head>
+<body ng-controller="RootCtrl">
+
+<div id="a">A {{ text }}</div>
+<div id="b">B</div>
+
+<script>
+    var root = angular.module('root', []);
+
+    var RootCtrl = root.controller('RootCtrl', function ($scope, $compile) {
+        var link = $compile('<p>{{ text }}</p>');
+        var node = link($scope);
+        console.log(node);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+
+angular.extend
+<input type="button" onclick="button1()" value="比较值"/>
+
+<script>
+    function button1() {
+        var obj1 = {name: "tom", password: "123456", person: {isPerson: "y", object: {name: "obj"}}};
+        var dst = angular.extend({sex: "female"}, obj1);
+        console.log("dst:" + JSON.stringify(dst));
+        console.log("obj1:" + JSON.stringify(obj1));
+    }
+</script>
+</body>
+</html>

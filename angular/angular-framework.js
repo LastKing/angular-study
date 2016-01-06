@@ -326,6 +326,8 @@
 		function append(element) {
 			element && elements.push(element)
 		}
+		// 先看指定的element是否包含ng-app属性（4种）
+		// 比后面的通过属性来查找的优先级高
 		var appElement, module, elements = [element],
 			names = ["ng:app", "ng-app", "x-ng-app", "data-ng-app"],
 			NG_APP_CLASS_REGEXP = /\sng[:\-]app(:\s*([\w\d_]+);?)?\s/;
@@ -375,6 +377,7 @@
 		})
 	}
 
+	//angular检测是否引入jquery,引入则使用jquery并将scope能方法绑定到jquery上
 	function bindJQuery() {
 		jQuery = window.jQuery, jQuery ? (jqLite = jQuery, extend(jQuery.fn, {
 			scope: JQLitePrototype.scope,
@@ -416,18 +419,23 @@
 	}
 
 	function setupModuleLoader(window) {
+		// 检查obj.name，如果有就是getter操作，否则就是setter操作
 		function ensure(obj, name, factory) {
 			return obj[name] || (obj[name] = factory())
 		}
 		var $injectorMinErr = minErr("$injector"),
 			ngMinErr = minErr("ng");
+
+		//设置window.angular等于一个空对象
 		return ensure(ensure(window, "angular", Object), "module", function() {
 			var modules = {};
 
 			return function(name, requires, configFn) {
+				// 模块名字检查：名字不能是hasOwnProperty，代码略
 				var assertNotHasOwnProperty = function(name, context) {
 					if ("hasOwnProperty" === name) throw ngMinErr("badname", "hasOwnProperty is not a valid {0} name", context)
 				};
+
 				return assertNotHasOwnProperty(name, "module"), requires && modules.hasOwnProperty(name) && (modules[name] = null), ensure(modules, name, function() {
 					function invokeLater(provider, method, insertMethod) {
 						return function() {
@@ -435,8 +443,8 @@
 						}
 					}
 					if (!requires) throw $injectorMinErr("nomod", "Module '{0}' is not available! You either misspelled the module name or forgot to load it. If registering a module ensure that you specify the dependencies as the second argument.", name);
-					var invokeQueue = [],
-						runBlocks = [],
+					var invokeQueue = [],// 调用队列
+						runBlocks = [],		// 运行块
 						config = invokeLater("$injector", "invoke"),
 						moduleInstance = {
 							_invokeQueue: invokeQueue,
@@ -494,7 +502,10 @@
 			},
 			$$minErr: minErr,
 			$$csp: csp
-		}), angularModule = setupModuleLoader(window);
+		}),
+
+		//该函数返回了一系列的API，用于Angular组织模块，注册指令、服务、控制器等，也就是常用的 angular.module
+		angularModule = setupModuleLoader(window);
 		try {
 			angularModule("ngLocale")
 		} catch (e) {
@@ -4638,7 +4649,7 @@
 				}
 			}
 		],
-		ngStyleDirective = ngDirective(function(scope, element, attr) {
+		ngStyleDirective = ngDirective(function(scope, element, attr) {setupModuleLoader
 			scope.$watch(attr.ngStyle, function(newStyles, oldStyles) {
 				oldStyles && newStyles !== oldStyles && forEach(oldStyles, function(val, style) {
 					element.css(style, "")
@@ -4937,6 +4948,10 @@
 			restrict: "E",
 			terminal: !0
 		});
+
+	//1.绑定jquery
+	//2.绑定一些方法到 angular 对象上，然后初始化 Angular 的核心模块
+	//3.文档加载完之后   angularInit启动
 	bindJQuery(), publishExternalAPI(angular), jqLite(document).ready(function() {
 		angularInit(document, bootstrap)
 	})
