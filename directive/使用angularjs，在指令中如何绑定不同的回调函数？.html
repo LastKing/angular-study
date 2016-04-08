@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body>
+<a href="https://segmentfault.com/q/1010000002588595">使用angularjs，在指令中如何绑定不同的回调函数？</a>
+
+<input my-datepicker id="1" outer-fn="callbackA(args)"/>
+<input my-datepicker id="2" outer-fn="callbackB(args)"/>
+
+<script>
+    var app = angular.module("app", []);
+    app.controller('parentCtrl', function ($scope) {
+        $scope.callbackA = function () {
+            $log.info('callback A');
+        };
+
+        $scope.callbackB = function () {
+            $log.info('callback B');
+        }
+    });
+
+    //false：共享作用域
+    app.directive('myDatepicker', function () {
+        return {
+            restrict: 'AE',
+            scope: {
+                localFn: '&outerFn'
+            },
+            template: "<div>dafdas</div>",
+            link: function ($scope) {
+                $scope.localFn({args: args});
+            }
+        };
+    });
+
+</script>
+</body>
+</html>
+
