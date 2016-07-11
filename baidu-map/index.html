@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=zrIUNXxqoCCHENbDCqfeSG0Y9Yz9BHZi"></script>
+
+    <script src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.js"></script>
+    <link href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" rel="stylesheet"/>
+</head>
+<body ng-controller="rootCtrl">
+
+<baidu-map options="mapOptions" testip="ips" ak="zrIUNXxqoCCHENbDCqfeSG0Y9Yz9BHZi" offline="offlineOpts"
+           style="width: 500px; height: 500px;display: block;" ></baidu-map>
+
+
+<script src="../angular/angular.js"></script>
+<!--<script src="angular-baidu-map.js"></script>-->
+<script>
+    var root = angular.module('root', []);
+
+    var rootCtrl = root.controller('rootCtrl', function ($scope) {
+        var longitude = 116.404;
+        var latitude = 39.923;
+        $scope.mapOptions = {
+            center: {
+                longitude: longitude,
+                latitude: latitude
+            },
+            zoom: 16,
+            city: 'ShangHai'
+        };
+        $scope.ips = [
+            [
+                {latitude: '116.399778', longitude: '39.928021'},
+                {latitude: '116.401341', longitude: '39.928098'},
+                {latitude: '116.40117', longitude: '39.92668'},
+                {latitude: '116.399652', longitude: '39.926617'}
+            ],
+            [
+                {latitude: '116.403964', longitude: '39.923699'},
+                {latitude: '116.407432', longitude: '39.923975'},
+                {latitude: '116.407252', longitude: '39.920794'},
+                {latitude: '116.403515', longitude: '39.920807'}
+            ]
+        ];
+    });
+</script>
+
+<script src="index.js"></script>
+
+</body>
+</html>
