@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div ng-app="root1">
+    <div ng-app="root2">
+        <!--<div ng-controller="root1Ctrl">-->
+            <div ng-controller="root2Ctrl">
+                <div>{{name}}</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="../angular/angular.js"></script>
+
+<script>
+    var root1 = angular.module('root1', []);
+    root1.controller('root1Ctrl', function ($scope) {
+        $scope.name = 'root1';
+    });
+
+    var root2 = angular.module('root2', []);
+    root2.controller('root2Ctrl', function ($scope) {
+        $scope.name = 'root1';
+    });
+</script>
+
+</body>
+</html>
