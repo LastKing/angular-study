@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="root">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -33,8 +33,8 @@
     <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
     <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
     <button type="button" class="btn btn-default" ng-click="open('sm')">Small modal</button>
-    <button type="button" class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled
-        }})
+    <button type="button" class="btn btn-default" ng-click="toggleAnimation()">
+        Toggle Animation ({{ animationsEnabled}})
     </button>
     <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 </div>
@@ -42,7 +42,7 @@
 <script>
     var root = angular.module('root', ['ui.bootstrap']);
 
-    root.controller('rootCtrl',function ($scope, $uibModal, $log) {
+    root.controller('rootCtrl', function ($scope, $uibModal, $log) {
         $scope.items = ['item1', 'item2', 'item3'];
 
         $scope.animationsEnabled = true;
