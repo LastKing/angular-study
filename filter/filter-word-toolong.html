@@ -7,13 +7,20 @@
 </head>
 <body ng-controller="RootCtrl">
 
-{{'testetsetse'|toolong}}
+<div ng-click="click1()">
+    {{test.txt | toolong}}
+</div>
 
 <script>
     var root = angular.module('root', []);
 
     var RootCtrl = root.controller('RootCtrl', function ($scope) {
-
+        $scope.test = {
+            txt: 'testetsetse'
+        };
+        $scope.click1 = function () {
+            console.log($scope.test.txt);
+        }
     });
 
     root.filter('toolong', function () {
