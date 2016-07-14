@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myModule">
+<html lang="en" ng-app="root">
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
-    <script src="service1.js"></script>
+    <script src="../angular/angular.js"></script>
 </head>
-<body ng-controller="myController">
-    <div ng-bind="test1"></div>
+<body ng-controller="rootCtrl">
+
+<div ng-bind="test1"></div>
+<div ng-bind="test2"></div>
+
+<script>
+    var root = angular.module('root', ['root2']);
+
+    root.controller('rootCtrl', function ($scope, root2Service) {
+        $scope.test1 = 'text';
+        $scope.test2 = root2Service.getAll();
+    });
+
+    var root2 = angular.module('root2', []);
+    root2.service('root2Service', function () {
+        this.getAll = function () {
+            return 'root2ServiceAll';
+        }
+    });
+
+</script>
 </body>
 </html>

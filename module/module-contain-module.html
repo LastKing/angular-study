@@ -7,14 +7,13 @@
 <body>
 
 <div ng-app="root1">
-    <div ng-app="root2">
-        <!--<div ng-controller="root1Ctrl">-->
-            <div ng-controller="root2Ctrl">
-                <div>{{name}}</div>
-            </div>
-        </div>
-
+    <!--<div ng-app="root2">-->
+    <div ng-controller="root1Ctrl">
+        <!--<div ng-controller="root2Ctrl">-->
+        <div>{{name}}</div>
+        <!--</div>-->
     </div>
+    <!--</div>-->
 </div>
 
 <script src="../angular/angular.js"></script>
@@ -27,7 +26,7 @@
 
     var root2 = angular.module('root2', []);
     root2.controller('root2Ctrl', function ($scope) {
-        $scope.name = 'root1';
+        $scope.name = 'root2';
     });
 </script>
 
