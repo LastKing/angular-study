@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="root">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular/angular.js"></script>
+</head>
+<body ng-controller="rootCtrl">
+{{test}}
+
+<script>
+    var root = angular.module('root', ['root2']);
+    root.controller('rootCtrl', function ($scope, root2Service) {
+        $scope.test = root2Service.getAll();
+
+    });
+
+    var root2 = angular.module('root2', []);
+    root2Service = root.service('root2Service', function () {
+        this.getAll = function () {
+            return ['a', 'b', 'c'];
+        }
+    })
+
+
+</script>
+</body>
+</html>
