@@ -1,0 +1,36 @@
+<div>
+    <style>
+        @media (min-width: 768px) {
+            .map {
+                width: 500px;
+                height: 500px;
+                display: block;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .map {
+                width: 1200px;
+                height: 950px;
+                display: block;
+            }
+        }
+    </style>
+    <div ng-if="type=='scenic'">
+        <p>1.地图上选择多边形开始绘制图片，鼠标左键双击结束绘制</p>
+        <p>2.左键双击获取经纬度
+            <input type="text" ng-model="coordinate.lng">
+            <input type="text" ng-model="coordinate.lat">
+        </p>
+    </div>
+    <div id="map" class="map"></div>
+
+    <!--<input type="button" ng-click="addAreaInput()" value="添加">-->
+
+    <div ng-repeat=" cor  in area" ng-if="!$last">
+        <!--<div ng-repeat="cor in obj" >-->
+        经度：<input ng-model="cor.lng" type="text"/>
+        纬度：<input ng-model="cor.lat" type="text"/>
+        <!--</div>-->
+    </div>
+</div>
