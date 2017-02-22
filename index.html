@@ -10,19 +10,32 @@
 
 <div class="text-center">
     <h2>欢迎来到angluar !~!~哈哈</h2>
-    <h3>{{time}}</h3>
+    <h3>过去：2017-1-3 18:45:13</h3>
+    <h3>现在：{{time}}</h3>
+    <h3>未来：2027-1-3 18:45:13</h3>
+    <h5>给未来的自己：加油！奋斗！Fight！吼吼！（十年我能到做到什么！加油！十年再见！）</h5>
 </div>
 
 <script src="angular/angular.js"></script>
 <script>
   var app = angular.module('app', []);
   app.controller('appCtrl', function ($scope, $interval) {
-    $scope.time = 1000;
+    $scope.time = getTime(new Date());
 
     $interval(function () {
-      $scope.time += 1;
+      $scope.time = getTime(new Date());
     }, 1000);
   });
+
+  function getTime(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var day = date.getDay();
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    var second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+    return `${year}-${month}-${day} ${hour}:${min}:${second}`;
+  }
 </script>
 
 </body>
