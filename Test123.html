@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="appCtrl">
+
+{{data}}
+
+<script src="angular1.6.2/angular.js"></script>
+<script>
+  var app = angular.module('app', []);
+
+  app.controller('appCtrl', function ($scope, $http) {
+    $http.get('http://localhost:3000/hello?id=xxxx&password=pasword').then(function (result) {
+      $scope.data = result.data;
+      console.log(result.data);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  });
+</script>
+</body>
+</html>
